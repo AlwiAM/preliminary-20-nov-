@@ -26,10 +26,17 @@ function addStudent(studentId, name) {
 try {
   addStudent("002", "Yayan");
   addStudent("001", "Aryo");
+} catch (error) {
+  console.log(error.message);
+}
+
+try {
   console.log(studentList);
 } catch (error) {
   console.log(error.message);
 }
+
+
 
 //buatin function calculateDiscount(price, discountPercent)
 // 1. validasi: price harus > 0

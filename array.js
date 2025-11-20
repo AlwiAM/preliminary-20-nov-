@@ -66,18 +66,18 @@
 // //mengakses nama produk pertama
 // console.log(products[0].name);
 
-const products = [
-  { id: 1, name: "Laptop", price: 5000000, stock: 10, category: "Electronics" },
-  { id: 2, name: "Mouse", price: 150000, stock: 50, category: "Electronics" },
-  {
-    id: 3,
-    name: "Keyboard",
-    price: 300000,
-    stock: 30,
-    category: "Electronics",
-  },
-  { id: 4, name: "Notebook", price: 15000, stock: 100, category: "Stationery" },
-];
+// const products = [
+//   { id: 1, name: "Laptop", price: 5000000, stock: 10, category: "Electronics" },
+//   { id: 2, name: "Mouse", price: 150000, stock: 50, category: "Electronics" },
+//   {
+//     id: 3,
+//     name: "Keyboard",
+//     price: 300000,
+//     stock: 30,
+//     category: "Electronics",
+//   },
+//   { id: 4, name: "Notebook", price: 15000, stock: 100, category: "Stationery" },
+// ];
 
 // c masukin data ke array: push, unshift, etc
 // r find()
@@ -92,34 +92,82 @@ const products = [
 //algorima
 // 1. lakukan perulangan semua data di dalam array V
 // 2. pada setiap iterasi cari yang id = 4 V
-// 3. jika ditemukan tampilkan ke console
+// 3. jika ditemukan tampilkan ke console V
 
-function findProductLoop(idParam) {
-  for (let i = 0; i < products.length; i++) {
-    if (products[i].id === idParam) {
-      return products[i]; //kalau ketemu langsung return
-    }
-  }
-  return undefined; //tidak ketemu
-}
+// function findProductLoop(idParam) {
+//   for (let i = 0; i < products.length; i++) {
+//     if (products[i].id === idParam) {
+//       return products[i]; //kalau ketemu langsung return
+//     }
+//   }
+//   return undefined; //tidak ketemu
+// }
 
-const result = findProductLoop(5);
-console.log(result);
+// const result = findProductLoop(5);
+// console.log(result);
 
 //find() -> mengembalikan data pertama yg sesuai kondisi
-const result1 = products.find((item) => item.id === 4);
-console.log(result1);
+// const result1 = products.find((item) => item.id === 4);
+// console.log(result1);
 
 //kapan digunakan? validasi duplikasi data
 
-//latihan
-// const students = [
-//   { studentId: "001", name: "Alice", score: 85 },
-//   { studentId: "002", name: "John", score: 70 },
-//   { studentId: "003", name: "Clara", score: 90 },
-//   { studentId: "004", name: "Deni", score: 65 },
-// ];
+// latihan
+const students = [
+  { studentId: "001", name: "Alice", score: 85 },
+  { studentId: "002", name: "John", score: 70 },
+  { studentId: "003", name: "Clara", score: 90 },
+  { studentId: "004", name: "Deni", score: 65 },
+];
 
 // 1. cari sudent yang idnya 003
 // 2. tampilin semua student yang nilai >= 75
-// 3. hitung total nilai semua student-
+// 3. hitung total nilai semua student
+
+//2. menampilkan semua data yang memenuhi kriteria
+// siapkan array kosong untuk penampung hasil
+// buat functionnya, siapkan parameter untuk kriteria pencarian * opsional
+// lakukan perulangan sebanyak panjang data
+// pada setiap iterasi cek apakah nilai >= 75
+// jika iya -> masukkan ke array penampung hasil
+// return array hasil
+
+// let passingStudent = [];
+
+// for (let i = 0; i < students.length; i++) {
+//   if (students[i].score >= 75) {
+//     passingStudent.push(students[i]);
+//   }
+// }
+
+// console.log(passingStudent);
+
+// const passingStudent2 = students.filter((student) => student.score >= 75);
+
+// console.log(passingStudent2);
+
+//3. total nilai student
+// siapin variabel kosong untuk total nilai
+// buat looping untuk setiap data
+// tambahin nilai setiap student ke variabel total
+// return
+
+let totalScore = 0;
+
+for (let student of students) {
+  totalScore += student.score;
+}
+
+console.log("Score total of all students", totalScore);
+
+//reduce() -> digunakan untuk mereduksi nilai di array
+//mempunyai akumulator : gabungan nilai dari current value dan currunt value sebelum
+//current value: nilai saat ini
+//initial value: nilai awal yg diberikan
+
+const totalValue = students.reduce(
+  (total, student) => total + student.score,
+  0
+);
+console.log("Score total of all students", totalValue);
+

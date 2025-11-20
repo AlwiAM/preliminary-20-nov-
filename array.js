@@ -111,3 +111,15 @@ const result1 = products.find((item) => item.id === 4);
 console.log(result1);
 
 //kapan digunakan? validasi duplikasi data
+
+//latihan
+// const students = [
+//   { studentId: "001", name: "Alice", score: 85 },
+//   { studentId: "002", name: "John", score: 70 },
+//   { studentId: "003", name: "Clara", score: 90 },
+//   { studentId: "004", name: "Deni", score: 65 },
+// ];
+
+// 1. cari sudent yang idnya 003
+// 2. tampilin semua student yang nilai >= 75
+// 3. hitung total nilai semua student-

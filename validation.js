@@ -36,8 +36,6 @@ try {
   console.log(error.message);
 }
 
-
-
 //buatin function calculateDiscount(price, discountPercent)
 // 1. validasi: price harus > 0
 // 2. validasi dikson rentang 1-100
@@ -45,3 +43,35 @@ try {
 // 4. kalau valid, hitung dan return price setelah dikson
 
 // finalPrice = price - (price * discountPercent /100)
+
+function calculateDiscount(price, discountPercent) {
+  // 1. Validasi price harus positif
+  if (price <= 0) {
+    throw new Error("Harga harus lebih dari 0");
+  }
+
+  // 2. Validasi diskon antara 0-100
+  if (discountPercent < 0 || discountPercent > 100) {
+    throw new Error("Diskon harus antara 0-100");
+  }
+
+  // PROSES (setelah validasi aman)
+
+  // 3. Hitung nilai diskon
+  const discountValue = (price * discountPercent) / 100;
+
+  // 4. Hitung price akhir
+  const finalPrice = price - discountValue;
+
+  // 5. Return result
+  return finalPrice;
+}
+
+// Test
+try {
+  console.log(calculateDiscount(100000, 20)); // 80000
+  console.log(calculateDiscount(50000, 10)); // 45000
+  console.log(calculateDiscount(-500, 10)); // Error!
+} catch (error) {
+  console.log("ERROR:", error.message);
+}

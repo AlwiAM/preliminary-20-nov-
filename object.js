@@ -56,3 +56,5 @@ const student = {
 student.addCourse("Math");
 
 console.log(student);
+
+

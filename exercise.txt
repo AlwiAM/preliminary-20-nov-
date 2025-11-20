@@ -1,0 +1,100 @@
+LATIHAN SOAL 
+
+1. JAVASCRIPT SISTEM PERPUSTAKAAN
+Buat object "perpustakaan" dengan 2 property array:
+- buku: [{ isbn, judul, pengarang, tahun, stok, dipinjam }]
+- peminjaman: [{ id, isbn, namaPeminjam, tanggalPinjam, status }]
+
+Method yang harus dibuat:
+1. tambahBuku(isbn, judul, pengarang, tahun, stok)
+2. pinjamBuku(idPeminjaman, isbn, namaPeminjam, tanggalPinjam)
+3. kembalikanBuku(idPeminjaman)
+4. cariBuku(keyword)
+5. laporanBukuPopuler()
+6. hitungStokTersedia(isbn)
+
+
+
+
+2. SQL SISTEM RESTORAN
+
+Setup Database:
+
+CREATE TABLE menu (
+  id_menu VARCHAR(10) PRIMARY KEY,
+  nama_menu VARCHAR(100),
+  kategori VARCHAR(50),
+  harga INTEGER,
+  tersedia BOOLEAN
+);
+
+CREATE TABLE pesanan (
+  id_pesanan VARCHAR(10) PRIMARY KEY,
+  tanggal DATE,
+  nama_customer VARCHAR(100),
+  nomor_meja INTEGER,
+  status VARCHAR(20)
+);
+
+CREATE TABLE detail_pesanan (
+  id_detail SERIAL PRIMARY KEY,
+  id_pesanan VARCHAR(10) REFERENCES pesanan(id_pesanan),
+  id_menu VARCHAR(10) REFERENCES menu(id_menu),
+  jumlah INTEGER,
+  subtotal INTEGER
+);
+
+Insert data:
+
+INSERT INTO menu VALUES
+('M001', 'Nasi Goreng', 'Makanan', 25000, TRUE),
+('M002', 'Mie Ayam', 'Makanan', 20000, TRUE),
+('M003', 'Sate Ayam', 'Makanan', 30000, TRUE),
+('M004', 'Es Teh Manis', 'Minuman', 5000, TRUE),
+('M005', 'Jus Jeruk', 'Minuman', 10000, TRUE),
+('M006', 'Kopi', 'Minuman', 8000, TRUE),
+('M007', 'Es Krim', 'Dessert', 15000, FALSE),
+('M008', 'Puding', 'Dessert', 12000, TRUE);
+
+INSERT INTO pesanan VALUES
+('P001', '2024-01-15', 'Budi Santoso', 5, 'Selesai'),
+('P002', '2024-01-15', 'Citra Dewi', 3, 'Selesai'),
+('P003', '2024-01-16', 'Ahmad Rizki', 7, 'Selesai'),
+('P004', '2024-01-16', 'Diana Putri', 2, 'Selesai'),
+('P005', '2024-01-17', 'Eko Prasetyo', 5, 'Dibatalkan');
+
+INSERT INTO detail_pesanan (id_pesanan, id_menu, jumlah, subtotal) VALUES
+('P001', 'M001', 2, 50000),
+('P001', 'M004', 2, 10000),
+('P002', 'M002', 1, 20000),
+('P002', 'M003', 1, 30000),
+('P002', 'M005', 1, 10000),
+('P003', 'M001', 3, 75000),
+('P003', 'M006', 3, 24000),
+('P004', 'M003', 2, 60000),
+('P004', 'M005', 2, 20000),
+('P004', 'M008', 1, 12000),
+('P005', 'M002', 1, 20000);
+
+Query yang harus dibuat:
+
+BASIC:
+1. Tampilkan semua menu yang tersedia (tersedia = TRUE), urutkan dari harga termurah
+2. Tampilkan menu kategori "Minuman" dengan harga < 10000
+3. Tampilkan pesanan dengan status "Selesai" di tanggal 2024-01-16
+4. Hitung total menu per kategori
+
+JOIN:
+5. Tampilkan detail lengkap pesanan yang "Selesai" (gabung 3 tabel: pesanan + detail_pesanan + menu)
+   Kolom: id_pesanan, nama_customer, tanggal, nama_menu, jumlah, subtotal
+
+6. Tampilkan menu yang belum pernah dipesan (gunakan LEFT JOIN + WHERE IS NULL)
+
+AGGREGATE & ANALISIS:
+
+7. TOP 3 menu terlaris (berdasarkan SUM jumlah)
+   Kolom: nama_menu, total_terjual, total_pendapatan
+
+8. Laporan harian: tanggal, jumlah_pesanan_selesai, total_pendapatan
+
+GOOD LUCK!
